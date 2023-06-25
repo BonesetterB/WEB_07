@@ -6,6 +6,6 @@ sys.path.insert(0, 'D:/python/WEB_07')
 from create_basssee import Teacher, Student, Discipline, Grade, Group
 from daabee import session
 
-result=session.query(Student.fullname, func.round(func.avg(Grade.grade), 2).label('avg_grade')) \
-    .select_from(Grade).join(Student).group_by(Student.id).order_by(desc('avg_grade')).limit(5).all()
+result=session.query(Group.name, func.round(func.avg(Grade.grade), 2).label('avg_grade')) \
+    .select_from(Grade).join(Student).where(Grade.discipline_id==4).group_by(Group.id).order_by(desc('avg_grade')).all()
 print(result)

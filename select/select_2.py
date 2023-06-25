@@ -8,6 +8,6 @@ from daabee import session
 
 
 result=session.query(Student.fullname, func.round(func.avg(Grade.grade), 2).label('avg_grade')) \
-    .select_from(Grade).where(Grade.id==3).join(Student).group_by(Student).order_by(desc('avg_grade')).all()
+    .select_from(Grade).where(Grade.discipline_id==3).join(Student).group_by(Student).order_by(desc('avg_grade')).first()
 
 print(result)
